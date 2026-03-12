@@ -18,21 +18,83 @@ Provides a user-friendly portable standalone interface to modify every aspect of
 winget upgrade --id <app ID>
 ```
 
+## To investigate
+
+Programs need to be installed already.
+Start with a base Windows 10, and install using winget.
+
+Try the GitHub hosted apps first as they are complicated. Confirm that they are working:
+
+```
+FreeCAD.FreeCAD
+KiCad.KiCad
+SoftFever.OrcaSlicer
+Prusa3D.PrusaSlicer
+```
+
+Then try:
+
+```
+Google.Chrome
+3Dflow.3DFZephyr.Free
+```
+
+Need to find the corrrect ID for Firefox.
+Should be [Mozilla.Firefox](https://winget.run/pkg/Mozilla/Firefox) but it's possibly out-of-date.
+
+en-GB version is [Mozilla.Firefox.en-GB](https://winstall.app/apps/Mozilla.Firefox.en-GB)
+
+Try uninstalling, reboot then install using winget. Check the locale.
+
+Can we host `lists` and `mods` directories on GitHub, for autoupdating?
+
 ## Known working app IDs
+
+These are confirmed as working:
 
 ```
 Git.Git
 Python.Python.3.13
 Ultimaker.Cura
+dotPDN.PaintDotNet
+Microsoft.VisualStudioCode
+Microsoft.WindowsTerminal
+3Dflow.3DFZephyr.Free
 ```
 
 ## Non-working app IDs
 
+These do not work:
+
+```
+ARP\Machine\X64\Mozilla Firefox
+```
+
 ## Unknown (test these)
+
+Check these, then move to working/non-working:
+
+```
+FreeCAD.FreeCAD
+KiCad.KiCad
+SoftFever.OrcaSlicer
+Prusa3D.PrusaSlicer
+7zip.7zip
+Google.Chrome
+Microsoft.Edge
+Notepad++.Notepad++
+Open-Shell.Open-Shell-Menu
+VideoLAN.VLC
+GIMP.GIMP.3
+Inkscape.Inkscape
+Adobe.Acrobat.Reader.64-bit
+```
+
+## The old way of doing things
 
 ### Currently handled by ninite
 
-These are updated using ninite, but require an admin. Can we automate them?
+These are updated using ninite, but require an admin. Can we automate them with winget?
 
 ```
 7Zip
