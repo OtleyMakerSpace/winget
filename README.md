@@ -1,92 +1,136 @@
 # winget
 
-Can we use `winget` (Windows Package Manager) to automate application updates?
+Using `winget` (Windows Package Manager) to automate application updates.
 
 ## Links
 
+[winget.run](https://winget.run/)
+
+Microsoft website which lets you search for available packages.
+
 [Winget-AutoUpdate](https://github.com/Romanitho/Winget-AutoUpdate?tab=readme-ov-file#readme)
 
-Uses the Winget tool to daily update apps (with system context) and notify users when updates are available and installed.
+Uses winget to auto-update apps (with system context) and notify users when updates are available and installed.
+Can be configured to run whenever any user logs in.
 
 [WAU Settings GUI (for Winget-AutoUpdate)](https://github.com/KnifMelti/WAU-Settings-GUI?tab=readme-ov-file#readme)
 
 Provides a user-friendly portable standalone interface to modify every aspect of Winget-AutoUpdate (WAU).
 
-## To upgrade an app manually
+## How to use winget manually
+
+### Install an application
+
+```
+winget install --id <app ID>
+```
+
+### Upgrade an application
 
 ```
 winget upgrade --id <app ID>
 ```
 
+### Check an installed application
+
+```
+winget list --id <app ID>
+```
+
+## To setup auto updates
+
+- Download the latest [WAU Settings GUI](https://github.com/KnifMelti/WAU-Settings-GUI/releases) zip file
+- Unzip and run (can be run as a portable app)
+- Check "Run at user logon"
+- Copy [excluded_apps.txt](lists/excluded_apps.txt) to `C:\Program Files\Winget-AutoUpdate`
+- Click "Run WAU"
+- Check logs
+
 ## To investigate
 
-Programs need to be installed already.
-Start with a base Windows 10, and install using winget.
-
-Try the GitHub hosted apps first as they are complicated. Confirm that they are working:
-
-```
-FreeCAD.FreeCAD
-KiCad.KiCad
-SoftFever.OrcaSlicer
-Prusa3D.PrusaSlicer
-```
-
-Then try:
-
-```
-Google.Chrome
-3Dflow.3DFZephyr.Free
-```
-
-Need to find the corrrect ID for Firefox.
-Should be [Mozilla.Firefox](https://winget.run/pkg/Mozilla/Firefox) but it's possibly out-of-date.
-
-en-GB version is [Mozilla.Firefox.en-GB](https://winstall.app/apps/Mozilla.Firefox.en-GB)
-
-Try uninstalling, reboot then install using winget. Check the locale.
+**Programs need to be installed already.**
+We can use `winget` to install them.
+Firefox needs special treatment.
 
 Can we host `lists` and `mods` directories on GitHub, for autoupdating?
+Doesn't look like it, but we can store in a network share, and clone our repo into that.
 
 ## Known working app IDs
 
-These are confirmed as working:
+These are confirmed as working.
+
+### Development tools
 
 ```
-Git.Git
-Python.Python.3.13
-Ultimaker.Cura
-dotPDN.PaintDotNet
+Notepad++.Notepad++
 Microsoft.VisualStudioCode
-Microsoft.WindowsTerminal
+Git.Git
+```
+
+### CAD / design
+
+```
+KiCad.KiCad
+GIMP.GIMP.3
+Inkscape.Inkscape
+dotPDN.PaintDotNet
+```
+
+### 3D
+
+```
+SoftFever.OrcaSlicer
+Prusa3D.PrusaSlicer
+Ultimaker.Cura
 3Dflow.3DFZephyr.Free
 ```
 
-## Non-working app IDs
+### Web browsers
 
-These do not work:
+```
+Google.Chrome
+Microsoft.Edge
+Mozilla.Firefox.en-GB
+```
+
+### Media
+
+```
+VideoLAN.VLC
+```
+
+## Non-working applications
+
+### Firefox
 
 ```
 ARP\Machine\X64\Mozilla Firefox
 ```
+
+This appears in the list because Firefox was installed using the regular Windows installer.
+
+To fix: uninstall Firefox, and re-install (with the correct locale) using winget:
+
+```
+winget install --id Mozilla.Firefox.en-GB
+```
+
+### FreeCAD
+
+```
+FreeCAD.FreeCAD
+```
+FreeCAD [has issues](https://github.com/microsoft/winget-pkgs/issues/288310), and should not be upgraded with winget.
 
 ## Unknown (test these)
 
 Check these, then move to working/non-working:
 
 ```
-FreeCAD.FreeCAD
-KiCad.KiCad
-SoftFever.OrcaSlicer
-Prusa3D.PrusaSlicer
+Python.Python.3.13
+Microsoft.WindowsTerminal
 7zip.7zip
-Google.Chrome
-Microsoft.Edge
-Notepad++.Notepad++
 Open-Shell.Open-Shell-Menu
-VideoLAN.VLC
-GIMP.GIMP.3
-Inkscape.Inkscape
 Adobe.Acrobat.Reader.64-bit
 ```
 
