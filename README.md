@@ -41,6 +41,7 @@ winget list --id <app ID>
 
 - Download the latest [WAU Settings GUI](https://github.com/KnifMelti/WAU-Settings-GUI/releases) zip file
 - Unzip and run (can be run as a portable app)
+- Allow it to install Winget-AutoUpdate
 - Check "Run at user logon"
 - Copy [excluded_apps.txt](lists/excluded_apps.txt) to `C:\Program Files\Winget-AutoUpdate`
 - Click "Run WAU"
