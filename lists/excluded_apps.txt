@@ -1,0 +1,22 @@
+########## Otley Maker Space settings ##########
+
+# these are OK to auto-update
+#Google.Chrome*
+#Microsoft.Edge*
+#Mozilla.Firefox*
+
+# do not update these
+FreeCAD.FreeCAD
+LightBurnSoftware.LightBurn
+
+########## Winget-AutoUpdate defaults ##########
+
+Brave.Brave*
+Microsoft.Office
+Microsoft.OneDrive
+Microsoft.RemoteDesktopClient
+Microsoft.Teams*
+Opera.Opera*
+TeamViewer.TeamViewer*
+Romanitho.Winget-AutoUpdate
+KnifMelti.WAU-Settings-GUI
